@@ -23,7 +23,7 @@ food_vlow$Name <- factor(food_vlow$Name,
                           ordered = T, 
                           c("Ohio", "Indiana", "Michigan", "West Virginia", "Pennsylvania", "Illinois"))
 
-## themes for chart 
+## minimal themes for chart 
 panel_theme <- theme(panel.grid = element_blank(),
                         panel.background = element_blank(),
                         axis.ticks = element_blank()) 
@@ -37,15 +37,15 @@ text_theme <-theme(plot.title = element_text(size = 26,
             theme(axis.title = element_blank()) +
             theme(axis.text = element_blank()) 
       
-## small multiples with minimal
+## small multiples with minimal theme
 ggplot(food_vlow, aes(x = Year, y = Percent)) + 
   geom_smooth(size = 2, color = "#DD7049") + 
   geom_point(size = 3, color = "#4A4F50") +
   facet_wrap(~ Name, ncol = 3) + 
   ylim(0, 8) + 
   xlim(2002, 2014) +
-  belt_panel + 
-  belt_text + 
+  panel_theme + 
+  text_theme + 
   geom_text(aes(label = Percent), size = 5, vjust = -1.20) + 
   geom_text(aes(label = Year), size = 5, vjust = 2) +
   theme(panel.margin = unit(1.5, "lines")) +
